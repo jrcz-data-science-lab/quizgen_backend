@@ -1,8 +1,8 @@
 from fastapi import FastAPI, Depends, HTTPException
-from schemas import UserCreate, LoginData
-from database import Base, engine
-from auth import create_access_token, get_current_supabase_user
-from users import get_db, create_user, authenticate_user
+from app.schemas import UserCreate, LoginData
+from app.database import Base, engine
+from app.auth import create_access_token, get_current_supabase_user
+from app.users import get_db, create_user, authenticate_user
 
 
 
