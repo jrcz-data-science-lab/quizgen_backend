@@ -27,14 +27,14 @@ the extracted text can then be displayed , edited and used to generate quizzes u
   - Install all dependencies from the requirements file: `pip install -r requirements.txt`
 
 - **Run the script**:
-  - Execute the Python script to extract PDF and PPTX text: `python -m uvicorn main:app --reload`
+  - Execute the Python script to extract PDF and PPTX text: `python -m uvicorn main:app --reload --port 8001`
   - This command works on macOS, Linux, and Windows (cmd or PowerShell) as long as the virtual environment is activated.
 
 - **The expected result**:
   - ![The expected result] 'extracted editable text'.
 
-The Backend/extract_files runs at `http://localhost:8000`
-and the docs available at `http://localhost:8000/docs`
+The Backend/extract_files runs at `http://localhost:8001`
+and the docs available at `http://localhost:8001/docs`
 
 
 ### Imports
