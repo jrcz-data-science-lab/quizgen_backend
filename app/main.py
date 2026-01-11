@@ -1,8 +1,9 @@
 from fastapi import FastAPI, Depends, HTTPException
-from .schemas import UserCreate, LoginData
-from .database import Base, engine
-from .auth import create_access_token, get_current_supabase_user
-from .users import get_db, create_user, authenticate_user
+from schemas import UserCreate, LoginData
+from database import Base, engine
+from auth import create_access_token, get_current_supabase_user
+from users import get_db, create_user, authenticate_user
+
 
 
 app = FastAPI()
@@ -11,13 +12,13 @@ app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
 
-@app.post("/register")
+@post("/register")
 def register(user: UserCreate, db=Depends(get_db)):
     new_user = create_user(user, db)
     return {"message": "User created successfully", "user_id": new_user.id}
 
 
-@app.post("/login")
+@post("/login")
 def login(login_data: LoginData, db=Depends(get_db)):
     user = authenticate_user(login_data.email, login_data.password, db)
 
@@ -33,7 +34,7 @@ def login(login_data: LoginData, db=Depends(get_db)):
         "id": user.id
     }
 
-@app.get("/me")
+@get("/me")
 def get_me(current_user=Depends(get_current_supabase_user)):
     """Return the Supabase authenticated user info (protected endpoint)."""
     return {"user": current_user}
