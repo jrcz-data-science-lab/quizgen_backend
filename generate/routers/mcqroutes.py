@@ -14,7 +14,7 @@ class ExportRequest(BaseModel):
 
 @router.post("/mcq")
 async def mcq_route(req: MCQRequest):
-    return await generate_mcq(req.text)
+    return {"ok": True}
 
 @router.post("/export-word")
 async def export_word_route(req: ExportRequest):
