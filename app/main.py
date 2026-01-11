@@ -12,13 +12,13 @@ app = FastAPI()
 Base.metadata.create_all(bind=engine)
 
 
-@post("/register")
+@app.post("/register")
 def register(user: UserCreate, db=Depends(get_db)):
     new_user = create_user(user, db)
     return {"message": "User created successfully", "user_id": new_user.id}
 
 
-@post("/login")
+@app.post("/login")
 def login(login_data: LoginData, db=Depends(get_db)):
     user = authenticate_user(login_data.email, login_data.password, db)
 
@@ -34,7 +34,7 @@ def login(login_data: LoginData, db=Depends(get_db)):
         "id": user.id
     }
 
-@get("/me")
+@app.get("/me")
 def get_me(current_user=Depends(get_current_supabase_user)):
     """Return the Supabase authenticated user info (protected endpoint)."""
     return {"user": current_user}
