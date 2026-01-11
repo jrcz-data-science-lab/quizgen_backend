@@ -21,5 +21,5 @@ app.add_middleware(
 app.include_router(mcq_router, prefix="/generate")
 
 @app.get("/")
-def home():
+def root():
     return {"message": "Backend running"}
